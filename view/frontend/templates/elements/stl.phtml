@@ -1,1 +1,32 @@
-<?php // slience is golden
+<?php
+declare(strict_types=1);
+
+use Hyva\CmsLiveviewEditor\Block\Element;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+
+/** @var Element $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels*/
+
+$children = $block->getChildren();
+$image = $block->getImage() ?? [];
+$imageSrc = @$image['src'] ?? '';
+?>
+<div
+    class="relative min-h-[450px] flex items-center justify-center overflow-hidden <?= $escaper->escapeHtmlAttr($block->getClasses()) ?>"
+    data-liveview-element="stl"
+    <?= /** @noEscape */ $block->getEditorAttrs() ?>
+    <?= /** @noEscape */ $block->renderBlockId() ?>
+>
+    <img src="<?= $block->getImagePath($imageSrc) ?>"
+        class="object-cover w-full absolute -z-10"
+        <?= /** @noEscape */ $block->getEditorAttrs('image') ?> />
+    <div <?= /** @noEscape */ $block->getEditorAttrs('text') ?>
+        class="text-3xl font-bold text-white">
+        <?= $block->renderRichText($block->getText()) ?>
+    </div>
+    <?php foreach ($children ?: [] as $elementData): ?>
+        <?= $block->createChildHtml($elementData, 'stl_child') ?>
+    <?php endforeach; ?>
+</div>

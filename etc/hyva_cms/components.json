@@ -1,1 +1,37 @@
-{}
+{
+  "stl": {
+    "label": "Shop the Look",
+    "description": "Editable component for shop the look, must be used for a large container",
+    "template": "Vendor_Example::elements/stl.phtml",
+    "children": true,
+    "content": {
+      "text": {
+        "type": "richtext",
+        "label": "Text"
+      },
+      "image": {
+        "type": "image",
+        "label": "Image"
+      },
+      "classes": {
+        "type": "text",
+        "label": "Classes"
+      }
+    }
+  },
+  "stl_single": {
+    "label": "STL Child",
+    "description": "Editable component for shop the look, must be used within shop the look component",
+    "template": "Vendor_Example::elements/stl-single.phtml",
+    "content": {
+      "x_axis": {
+        "type": "number",
+        "label": "X Axis"
+      },
+      "y_axis": {
+        "type": "number",
+        "label": "Y Axis"
+      }
+    }
+  }
+}
